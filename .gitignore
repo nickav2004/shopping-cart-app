@@ -1,0 +1,20 @@
+mhs/frontend/node_modules
+mhs/.pnp
+mhs/.pnp.js
+
+# testing
+mhs/coverage
+
+# production
+mhs/build
+
+# misc
+mhs/.DS_Store
+mhs/.env.local
+mhs/.env.development.local
+mhs/.env.test.local
+mhs/.env.production.local
+
+mhs/npm-debug.log*
+mhs/yarn-debug.log*
+mhs/yarn-error.log*
