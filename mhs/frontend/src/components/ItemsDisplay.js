@@ -1,3 +1,5 @@
+import React from "react";
+
 function ItemsDisplay({ items, deleteItem }) {
   const showItem = (item) => {
     return (

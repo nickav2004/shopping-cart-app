@@ -1,3 +1,4 @@
+import React from "react";
 import SearchBar from "./SearchBar";
 import AddItem from "./AddItem";
 import { useState, useEffect } from "react";
@@ -14,7 +15,7 @@ function App() {
   const [data, setData] = useState({ items: [] });
 
   useEffect(() => {
-    fetch("http://localhost:3000/items")
+    fetch("http://127.0.0.1:8000/api/get-all-items")
       .then((response) => response.json())
       .then((items) => setData({ items }));
   }, []);
@@ -28,15 +29,16 @@ function App() {
     const requestOptions = {
       method: "DELETE",
     };
-    fetch(`http://localhost:3000/items/${item.id}`, requestOptions).then(
-      (response) => {
-        if (response.ok) {
-          const idx = items.indexOf(item);
-          items.splice(idx, 1);
-          setData({ items });
-        }
+    fetch(
+      `http://127.0.0.1:8000/api/delete-item/${item.id}`,
+      requestOptions
+    ).then((response) => {
+      if (response.ok) {
+        const idx = items.indexOf(item);
+        items.splice(idx, 1);
+        setData({ items });
       }
-    );
+    });
   };
 
   const addItemToData = (item) => {
@@ -50,7 +52,7 @@ function App() {
       body: JSON.stringify(item),
     };
 
-    fetch("http://localhost:3000/items", requestOptions)
+    fetch("http://127.0.0.1:8000/api/add-item", requestOptions)
       .then((response) => response.json())
       .then((item) => {
         items.push(item);
